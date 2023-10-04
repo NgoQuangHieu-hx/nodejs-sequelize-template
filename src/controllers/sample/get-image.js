@@ -9,14 +9,15 @@ const fs = require('fs');
  * @apiParam {String} null
  **/
 module.exports = function (router) {
-    router.get('/test-connection', function (req, res, next) {
+    router.get('/get-image', function (req, res, next) {
         try {
-            console.log(__dirname);
+            const tempPath = path.join(__dirname, '../../images');
+            console.log(tempPath);
             const imagePath = req.params.path ?? '';
-            if (fs.existsSync(path.join(__dirname, '..', 'images', imagePath)) && imagePath != '') {
-                res.sendFile(path.join(__dirname, '..', 'images', imagePath));
+            if (fs.existsSync(path.join(tempPath, imagePath)) && imagePath != '') {
+                res.sendFile(path.join(tempPath, imagePath));
             } else {
-                res.sendFile(path.join(__dirname, '..', 'images', 'error-image-generic.png'));
+                res.sendFile(path.join(tempPath, 'error-image-generic.png'));
             }
         } catch (error) {
             console.error(error);

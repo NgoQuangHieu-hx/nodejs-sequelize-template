@@ -5,7 +5,6 @@ const { successResponse, errorResponse } = require('../../utils/responseModel')
 
 module.exports = function (router) {
     router.get('/test-connection', function (req, res, next) {
-        console.log('test');
         try {
             var connection = mysql.createConnection({
                 host: process.env.DB_HOST,
